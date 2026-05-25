@@ -13,4 +13,14 @@ function solveEquation(a, b, c) {
 }
 console.log(solveEquation(3, 9, 1));
 
-function calculateTotalMortgage(percent, contribution, amount, countMonths) {}
+function calculateTotalMortgage(percent, contribution, amount, countMonths) {
+  let S = amount - contribution;
+  percent = percent / 100;
+  let P = percent / 12;
+  let n = countMonths;
+  let payment = S * (P + P / ((1 + P) ** n - 1));
+  let sum = payment * countMonths;
+  sum = Math.round(sum * 100) / 100;
+  return sum;
+}
+console.log(calculateTotalMortgage(10, 1000, 50000, 12));
