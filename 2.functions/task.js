@@ -13,8 +13,10 @@ function getArrayParams(...arr) {
 console.log(getArrayParams(1, 2, 3, -100, 10));
 
 function summElementsWorker(...arr) {
-  return arr.reduce((a, b) => a + b);
+  const init = 0;
+  return arr.reduce((a, b) => a + b, init);
 }
+console.log(summElementsWorker());
 console.log(summElementsWorker(10, 10, 11, 20, 10));
 
 function differenceMaxMinWorker(...arr) {
@@ -22,6 +24,7 @@ function differenceMaxMinWorker(...arr) {
   const max = Math.max(...arr);
   return max - min;
 }
+console.log(differenceMaxMinWorker(0));
 console.log(differenceMaxMinWorker(10, 10, 11, 20, 10));
 function differenceEvenOddWorker(...arr) {
   let sumEvenElement = 0;
@@ -35,6 +38,7 @@ function differenceEvenOddWorker(...arr) {
   }
   return sumEvenElement - sumOddElement;
 }
+console.log(differenceEvenOddWorker(0));
 console.log(differenceEvenOddWorker(94, 51, 57, 41, 47, 66, 58, 10, 38, 17));
 console.log(differenceEvenOddWorker(15, 97, 85, 64, 67, 10, 69, 40, 15, 35));
 
