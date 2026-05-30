@@ -22,4 +22,4 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   sum = Math.round(sum * 100) / 100;
   return sum;
 }
-calculateTotalMortgage(10, 0, 50000, 12);
+console.log(calculateTotalMortgage(10, 0, 50000, 12));
