@@ -24,7 +24,7 @@ Student.prototype.getAverage = function () {
 };
 
 Student.prototype.exclude = function (reason) {
-  delete this.subjectName;
+  delete this.subject;
   delete this.marks;
   this.excluded = reason;
 };
@@ -34,11 +34,13 @@ student1.setSubject("Algebra");
 console.log(student1.getAverage()); // 0
 student1.addMarks(4, 5, 4, 5);
 student1.addMarks(5);
+student1.addMarks(7);
 console.log(student1.getAverage()); // 4.5
 console.log(student1);
 // {age: 19, gender: "женский", marks: [4, 5, 4, 5], name: "Василиса", subject: "Algebra"}
 let student2 = new Student("Артём", "мужской", 25);
 student2.setSubject("Geometry");
 student2.exclude("плохая учёба");
+student2.addMarks(7);
 console.log(student2);
 // {name: "Артём", gender: "мужской", age: 25, excluded: "плохая учёба"}
