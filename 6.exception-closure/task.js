@@ -12,7 +12,7 @@ function validateCount(number) {
   try {
     return parseCount(number);
   } catch (error) {
-    throw new Error("Невалидное значение");
+    return error;
   }
 }
 //console.log(validateCount("0123.124"));
@@ -53,13 +53,21 @@ function getTriangle(a, b, c) {
   try {
     return new Triangle(a, b, c);
   } catch (error) {
+    // return {
+    //   perimeter: "Ошибка! Треугольник не существует",
+    //   area: "Ошибка! Треугольник не существует",
+    // };
     return {
-      perimeter: "Ошибка! Треугольник не существует",
-      area: "Ошибка! Треугольник не существует",
+      get area() {
+        return "Ошибка! Треугольник не существует";
+      },
+      get perimeter() {
+        return "Ошибка! Треугольник не существует";
+      },
     };
   }
 }
-const myTri = getTriangle(2, 5, 5);
+const myTri = getTriangle(100, 3, 10);
 console.log(myTri);
 console.log(myTri.area);
 console.log(myTri.perimeter);
