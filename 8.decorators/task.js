@@ -37,48 +37,45 @@ upgraded(1, 2, 3); // вычисляем: 9  (снова вычисляем, к�
 //function debounceDecoratorNew(func, delay) {}
 
 function debounceDecoratorNew(func, ms) {
-  let timeout = null;
+  let timeout;
   let isCooldown = false;
 
   function wrapper(...args) {
-    // Первый вызов — сразу
+    // считаем ВСЕ вызовы декорированной функции
+    wrapper.allCount++;
+
+    // если сейчас можно выполнять — выполняем сразу
     if (!isCooldown) {
       func.apply(this, args);
       wrapper.count++;
 
       isCooldown = true;
 
-      timeout = setTimeout(() => {
+      setTimeout(() => {
         isCooldown = false;
-        timeout = null;
       }, ms);
 
       return;
     }
 
-    // Все последующие вызовы считаем
-    wrapper.allCount++;
-
-    // Отменяем предыдущий отложенный вызов
+    // если идет период ожидания —
+    // отменяем предыдущий отложенный вызов
     clearTimeout(timeout);
 
-    // Планируем новый
     timeout = setTimeout(() => {
       func.apply(this, args);
       wrapper.count++;
 
-      // После выполнения снова начинается период ожидания
       isCooldown = true;
 
-      timeout = setTimeout(() => {
+      setTimeout(() => {
         isCooldown = false;
-        timeout = null;
       }, ms);
     }, ms);
   }
 
-  wrapper.count = 1;
-  wrapper.allCount = 1;
+  wrapper.count = 0;
+  wrapper.allCount = 0;
 
   return wrapper;
 }
