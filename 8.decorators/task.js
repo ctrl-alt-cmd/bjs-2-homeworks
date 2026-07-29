@@ -77,8 +77,8 @@ function debounceDecoratorNew(func, ms) {
     }, ms);
   }
 
-  wrapper.count = 0;
-  wrapper.allCount = 0;
+  wrapper.count = 1;
+  wrapper.allCount = 1;
 
   return wrapper;
 }
